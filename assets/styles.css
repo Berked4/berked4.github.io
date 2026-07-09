@@ -1,0 +1,217 @@
+/* Diri Games — shared stylesheet
+   Static site, no external assets, no fonts, no tracking. */
+
+:root {
+  --bg: #131529;        /* deep indigo night */
+  --surface: #1c1f3a;   /* card background */
+  --line: #2d3157;      /* borders / dividers */
+  --ink: #eceaf8;       /* main text */
+  --muted: #a2a7cd;     /* secondary text */
+  --pop: #ff5d73;       /* coral — primary accent */
+  --gold: #ffc94d;      /* second pop dot */
+  --teal: #4fd8c0;      /* third pop dot */
+  --link: #aebcff;      /* link color */
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+  font-size: 1.0625rem;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 4rem;
+}
+
+/* Header / nav */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.4rem;
+  padding: 1rem 0 1.25rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2.5rem;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.1rem;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible { color: var(--ink); }
+
+/* Signature: three bouncing pop dots */
+
+.pops {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.pops span {
+  display: inline-block;
+  border-radius: 50%;
+  animation: pop-bounce 1.8s ease-in-out infinite;
+}
+
+.pops span:nth-child(1) { width: 0.95rem; height: 0.95rem; background: var(--pop); }
+.pops span:nth-child(2) { width: 0.75rem; height: 0.75rem; background: var(--gold); animation-delay: 0.18s; }
+.pops span:nth-child(3) { width: 0.55rem; height: 0.55rem; background: var(--teal); animation-delay: 0.36s; }
+
+@keyframes pop-bounce {
+  0%, 100% { transform: translateY(0); }
+  35%      { transform: translateY(-0.55rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pops span { animation: none; }
+}
+
+/* Type */
+
+h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.4rem 0 0.6rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.6rem 0 0.3rem;
+}
+
+p, ul { margin: 0 0 1rem; }
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 36rem;
+}
+
+a { color: var(--link); }
+
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+strong { color: var(--ink); }
+
+/* Cards and blocks */
+
+.card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  margin: 1.5rem 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+a.card:hover, a.card:focus-visible { border-color: var(--pop); }
+
+.card h2 { margin: 0 0 0.3rem; }
+
+.card p { margin: 0; color: var(--muted); }
+
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.shot-placeholder {
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+/* Draft banner (privacy page) */
+
+.draft-banner {
+  background: #3a2530;
+  border: 1px solid var(--pop);
+  border-radius: 12px;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+/* Policy article */
+
+.policy h2 { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+
+.policy .meta { color: var(--muted); }
+
+/* FAQ */
+
+.faq h3 { color: var(--ink); }
+
+.faq p { color: var(--muted); margin-bottom: 1.2rem; }
+
+/* Footer */
+
+.site-footer {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer a { color: var(--muted); }
